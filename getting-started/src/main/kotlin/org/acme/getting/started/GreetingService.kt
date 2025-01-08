@@ -6,6 +6,6 @@ import jakarta.enterprise.context.ApplicationScoped
 
 class GreetingService{
     fun greeting(name:String):String{
-        return "hello" + name
+        return "hello " + name
     }
 }
