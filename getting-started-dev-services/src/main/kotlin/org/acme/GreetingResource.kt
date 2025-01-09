@@ -6,7 +6,9 @@ import jakarta.ws.rs.Path
 import jakarta.ws.rs.Produces
 import jakarta.ws.rs.QueryParam
 import jakarta.ws.rs.core.MediaType
-import org.jboss.resteasy.reactive.RestQuery
+import java.util.stream.Collectors
+
+
 @Path("/hello")
 class GreetingResource {
 
@@ -20,5 +22,14 @@ class GreetingResource {
         return "Hello $name"
     }
 
-    
+    @Path("names")
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    fun names(): String {
+        val greetings = Greeting.listAll()
+        val names = greetings.map { it.name }.joinToString(", ")
+        return "I've said hello to $names"
+    }
+
+
 }
