@@ -10,7 +10,13 @@ class GreetingResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    fun hello(@RestQuery name:String):String{
-        return "Hello $name"
+    fun hello(@RestQuery name: String?): String {
+        return if (name.isNullOrBlank()) {
+            "Hello"
+        } else {
+            "Hello $name"
+        }
     }
+
+    
 }
